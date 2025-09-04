@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>个人社保计算</title>
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		 
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		 
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    <script>
+		    //JS代码要写在这里，JS是让网页和用户能交互
+			function calc() {
+				//1. 把用户输入的工资拿到
+				// sal是 "8000"     8000
+				sal = document.getElementById("salary").value;
+				salnum = parseInt(sal); //把字符串变成数字
+				//2. 开始计算
+				ylgr01 = salnum * 0.08;
+				ylgs01 = salnum * 0.2;
+				
+				ybgr01 = salnum * 0.02;
+				ybgs01 = salnum * 0.06;
+				
+				sygr01 = salnum * 0.005;
+				sygs01 = salnum * 0.015;
+				
+				gsgs01 = salnum * 0.005;//工伤
+				sybx01 = salnum * 0.008;//生育
+				
+				gjjgr01 = salnum * 0.12;
+				gjjgs01 = salnum * 0.12;
+				
+				grhj01 = ylgr01+ybgr01+sygr01+gjjgr01;
+				gshj01=ylgs01+ybgs01+sygs01+gsgs01+sybx01+gjjgs01;
+				total = grhj01 + gshj01;
+				
+				//3. 把计算结果放到单元格里
+				document.getElementById("grhj").innerText=grhj01;
+				document.getElementById("gshj").innerText=gshj01;
+				
+				document.getElementById("total").innerText=total;
+				
+				document.getElementById("ylgr").innerText=ylgr01;
+				document.getElementById("ylgs").innerText=ylgs01;
+				
+				document.getElementById("ybgr").innerText=ybgr01;
+				document.getElementById("ybgs").innerText=ybgs01;
+				
+				document.getElementById("sygr").innerText=sygr01;
+				document.getElementById("sygs").innerText=sygs01;
+				
+				document.getElementById("gsgs").innerText=gsgs01;
+				document.getElementById("sybx").innerText=sybx01;
+				
+				document.getElementById("gjjgr").innerText=gjjgr01;
+				document.getElementById("gjjgs").innerText=gjjgs01;
+			}
+		</script> 
+	</head>
+	<body>
+		<!--网页上的一个区域,用于做网页布局-->
+		<div class="container text-center">
+		   <!--一级标题-->
+		   <h3>个人社保计算器</h1>
+		   <table class="table table-bordered text-center">
+			   <tr>
+				   <td>工资</td>
+				   <td colspan="3">
+					   <input id="salary" class="form-control" type="text" placeholder="请输入工资" />
+				   </td>
+				   <td>
+					   <button onclick="calc()" class="btn btn-danger btn-block">计算</button>
+				   </td>
+			   </tr>
+			   <tr class="bg-primary">
+				   <td>险种</td>
+				    <td>个人%</td>
+					 <td>个人</td>
+					  <td>公司%</td>
+					   <td>公司</td>
+			   </tr>
+			   <tr>
+				   <td>养老</td>
+				   <td>8%</td>   
+				   <td id="ylgr"></td>
+				   <td>20%</td>
+				   <td id="ylgs"></td>
+			   </tr>
+			   <tr>
+			   				   <td>医保</td>
+			   				   <td>2%</td>
+			   				   <td id="ybgr"></td>
+			   				   <td>6%</td>
+			   				   <td id="ybgs"></td>
+			   </tr>
+			   <tr>
+			   				   <td>失业</td>
+			   				   <td>0.5%</td>
+			   				   <td id="sygr"></td>
+			   				   <td>1.5%</td>
+			   				   <td id="sygs"></td>
+			   </tr>
+			   <tr>
+			   				   <td>工伤</td>
+			   				   <td></td>
+			   				   <td></td>
+			   				   <td>0.5%</td>
+			   				   <td id="gsgs"></td>
+			   </tr>
+			   <tr>
+			   				   <td>生育</td>
+			   				   <td></td>
+			   				   <td></td>
+			   				   <td>0.8%</td>
+			   				   <td id="sybx"></td>
+			   </tr>
+			   <tr>
+			   				   <td>公积金</td>
+			   				   <td>12%</td>
+			   				   <td id="gjjgr"></td>
+			   				   <td>12%</td>
+			   				   <td id="gjjgs"></td>
+			   </tr>
+			   <tr>
+			   				   <td>合计</td>
+			   				   <td>个人合计</td>
+			   				   <td id="grhj"></td>
+			   				   <td>公司合计</td>
+			   				   <td id="gshj"></td>
+			   </tr>
+			   <tr>
+				   <td>总额</td>
+				   <td colspan="4" id="total"></td>
+			   </tr>
+		   </table>
+		</div>
+	</body>
+</html>
